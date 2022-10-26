@@ -3,14 +3,14 @@ import { SongCard } from '$/components/SongCard';
 
 import { SongsListProps } from './types';
 
-export const SongsList = ({ songs }: SongsListProps) => (
+export const SongsList = ({ songs, handleSelectChange }: SongsListProps) => (
   <div>
     <h2>Featured songs</h2>
-    <Select />
+    <Select handleSelectChange={handleSelectChange} />
     <ul>
       {songs?.map((song) => (
         <li key={song.id}>
-          <SongCard />
+          <SongCard {...song} />
         </li>
       ))}
     </ul>

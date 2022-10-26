@@ -29,7 +29,7 @@ function HomeView(): JSX.Element {
         placeholder="Search by title, genre..."
         handleInputChange={handleInputChange}
       />
-      <SongsList songs={songs} />
+      <SongsList songs={songs} handleSelectChange={handleSelectChange} />
     </Container>
   );
 }
