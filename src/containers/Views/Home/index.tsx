@@ -1,6 +1,7 @@
 import { SongsList } from '$/components/SongsList';
 import { Text } from '$/components/Text';
-import { useEffect } from 'react';
+import { FavsContext } from '$/context/favsContext';
+import { useContext, useEffect } from 'react';
 
 import { useLogic } from './logic';
 import { Container, SearchInput } from './styles';
@@ -13,12 +14,17 @@ function HomeView(): JSX.Element {
     handleInputChange,
     handleSelectChange,
   } = useLogic();
+  const { setFavsSongs } = useContext(FavsContext);
 
   useEffect(() => {
     if (songsFromAPI) {
       setSongs(songsFromAPI);
     }
   }, [songsFromAPI, setSongs]);
+
+  useEffect(() => {
+    setFavsSongs();
+  }, []);
 
   return (
     <Container>

@@ -1,5 +1,6 @@
 import '$/styles/fonts.css';
 import { Layout } from '$/containers/Layouts';
+import { FavsProviderWrapper } from '$/context/favsContext';
 import client from '$/graphql';
 import GlobalStyle from '$/styles/global';
 import theme from '$/styles/themes';
@@ -11,10 +12,12 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <FavsProviderWrapper>
+          <GlobalStyle />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </FavsProviderWrapper>
       </ThemeProvider>
     </ApolloProvider>
   );
