@@ -1,7 +1,11 @@
 import { Container, Input, SearchLineIcon } from './styles';
 import { SearchInputProps } from './types';
 
-export const SearchInput = ({ placeholder, className }: SearchInputProps) => (
+export const SearchInput = ({
+  placeholder,
+  className,
+  handleInputChange,
+}: SearchInputProps) => (
   <Container className={className}>
     <SearchLineIcon />
     <Input
@@ -9,6 +13,7 @@ export const SearchInput = ({ placeholder, className }: SearchInputProps) => (
       label="search"
       hideLabel={true}
       placeholder={placeholder}
+      onChange={handleInputChange}
     />
   </Container>
 );

@@ -25,8 +25,11 @@ function HomeView(): JSX.Element {
       <Text tag="h1" variant="title1">
         Explore
       </Text>
-      <SearchInput placeholder="Search by title, genre..." />
-      <SongsList />
+      <SearchInput
+        placeholder="Search by title, genre..."
+        handleInputChange={handleInputChange}
+      />
+      <SongsList songs={songs} />
     </Container>
   );
 }
