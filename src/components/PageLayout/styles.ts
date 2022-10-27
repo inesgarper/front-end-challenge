@@ -16,6 +16,7 @@ export const Main = styled.main`
   justify-content: center;
   width: 100%;
   padding-inline: 2.5rem;
+  overflow-x: scroll;
 
   ${from['tabletLandscape']} {
     padding-inline: 6rem;
