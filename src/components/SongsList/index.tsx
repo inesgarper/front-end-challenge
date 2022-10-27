@@ -10,7 +10,7 @@ export const SongsList = ({ songs, handleSelectChange }: SongsListProps) => (
     <ul>
       {songs?.map((song) => (
         <li key={song.id}>
-          <SongCard {...song} />
+          <SongCard song={song} />
         </li>
       ))}
     </ul>
