@@ -1,3 +1,4 @@
+import { AudioPlayer } from '$/components/AudioPlayer';
 import { SongsList } from '$/components/SongsList';
 import { Text } from '$/components/Text';
 import { FavsContext } from '$/context/favsContext';
@@ -36,6 +37,7 @@ function HomeView(): JSX.Element {
         handleInputChange={handleInputChange}
       />
       <SongsList songs={songs} handleSelectChange={handleSelectChange} />
+      <AudioPlayer />
     </Container>
   );
 }

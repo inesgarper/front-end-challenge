@@ -9,6 +9,6 @@ export const SelectInput = styled.select`
   padding: 0.5rem 0.25rem 0.5rem 0.5rem;
 `;
 
-export const Option = styled.option`
-  background-color: red;
+export const Option = styled.optgroup`
+  color: red;
 `;
