@@ -1,22 +1,14 @@
 import { createContext, useState } from 'react';
 
-type FavsContextType = {
-  favourites: number[];
-  setFavsSongs: () => void;
-  toggleFavs: (songID: number) => void;
-};
+import {
+  FavsContextType,
+  FavsProviderWrapperProps,
+  InitialContext,
+} from './types';
 
-const FavsContext = createContext<FavsContextType>({
-  favourites: [],
-  setFavsSongs: () => {},
-  toggleFavs: () => {},
-});
+export const FavsContext = createContext<FavsContextType>(InitialContext);
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const FavsProviderWrapper = (props: Props) => {
+export const FavsProviderWrapper = ({ children }: FavsProviderWrapperProps) => {
   const [favourites, setFavourites] = useState<FavsContextType['favourites']>(
     [],
   );
@@ -31,25 +23,20 @@ const FavsProviderWrapper = (props: Props) => {
   };
 
   const toggleFavs = (songID: number) => {
-    console.log('se ejecuta la función');
-    const favsCopy = [...favourites];
-
-    if (favsCopy.includes(songID)) {
-      const songToRemove = favsCopy.indexOf(songID);
-      favsCopy.splice(songToRemove, 1);
+    if (favourites.includes(songID)) {
+      const songToRemove = favourites.indexOf(songID);
+      favourites.splice(songToRemove, 1);
     } else {
-      favsCopy.push(songID);
+      favourites.push(songID);
     }
 
-    localStorage.setItem('favourites', JSON.stringify(favsCopy));
+    localStorage.setItem('favourites', JSON.stringify(favourites));
     setFavsSongs();
   };
 
   return (
     <FavsContext.Provider value={{ favourites, setFavsSongs, toggleFavs }}>
-      {props.children}
+      {children}
     </FavsContext.Provider>
   );
 };
-
-export { FavsContext, FavsProviderWrapper };
