@@ -14,9 +14,9 @@ export const SongsList = ({ songs, handleSelectChange }: SongsListProps) => (
       <Select handleSelectChange={handleSelectChange} />
     </Container>
     <ListElement>
-      {songs?.map((song) => (
+      {songs?.map((song, i) => (
         <li key={song.id}>
-          <SongCard song={song} />
+          <SongCard song={song} index={i} />
         </li>
       ))}
     </ListElement>

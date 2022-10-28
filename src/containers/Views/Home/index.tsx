@@ -37,7 +37,7 @@ function HomeView(): JSX.Element {
         handleInputChange={handleInputChange}
       />
       <SongsList songs={songs} handleSelectChange={handleSelectChange} />
-      <AudioPlayer />
+      <AudioPlayer songsList={songs} />
     </Container>
   );
 }

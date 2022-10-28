@@ -1,5 +1,6 @@
 import { Tag } from '$/components/Tag';
 import { Text } from '$/components/Text';
+import { CurrentSongContext } from '$/context/currentSongContext';
 import { FavsContext } from '$/context/favsContext';
 import { useContext, useEffect } from 'react';
 
@@ -14,10 +15,12 @@ import {
 } from './styles';
 import { SongsCardProps } from './types';
 
-export const SongCard = ({ song }: SongsCardProps) => {
+export const SongCard = ({ song, index }: SongsCardProps) => {
   const { favourites, toggleFavs } = useContext(FavsContext);
   const { songDuration, songGenre, getSongDuration, formatSongGenre } =
     useLogic();
+  const { currentSong, isPlaying, setCurrentSongAndPlay, playSong, pauseSong } =
+    useContext(CurrentSongContext);
 
   useEffect(() => {
     getSongDuration(song.audio.url);
@@ -43,7 +46,20 @@ export const SongCard = ({ song }: SongsCardProps) => {
             </Text>
           </div>
           <SongBottom>
-            <button>Play</button>
+            {currentSong === index && isPlaying ? (
+              <button onClick={() => pauseSong()}>Pause</button>
+            ) : (
+              <button
+                onClick={() => {
+                  setCurrentSongAndPlay(index);
+                  if (currentSong === index) {
+                    playSong();
+                  }
+                }}
+              >
+                Play
+              </button>
+            )}
             <Text tag="p" variant="caption" color={'grayscale700'}>
               {songDuration} min
             </Text>
