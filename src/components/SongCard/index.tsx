@@ -1,3 +1,4 @@
+import { FavButton } from '$/components/FavButton';
 import { Tag } from '$/components/Tag';
 import { Text } from '$/components/Text';
 import { CurrentSongContext } from '$/context/currentSongContext';
@@ -16,7 +17,6 @@ import {
 import { SongsCardProps } from './types';
 
 export const SongCard = ({ song, index }: SongsCardProps) => {
-  const { favourites, toggleFavs } = useContext(FavsContext);
   const { songDuration, songGenre, getSongDuration, formatSongGenre } =
     useLogic();
   const { currentSong, isPlaying, setCurrentSongAndPlay, playSong, pauseSong } =
@@ -67,13 +67,7 @@ export const SongCard = ({ song, index }: SongsCardProps) => {
           </SongBottom>
         </SongInfo>
       </SongContainer>
-      <button onClick={() => toggleFavs(song.id)} className="favButton">
-        {favourites.includes(song.id) ? (
-          <span>Dislike</span>
-        ) : (
-          <span>Like</span>
-        )}
-      </button>
+      <FavButton songID={song.id} />
     </Container>
   );
 };

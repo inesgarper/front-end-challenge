@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { FavButton } from '$/components/FavButton';
 import { CurrentSongContext } from '$/context/currentSongContext';
 import { useGetSongsList } from '$/graphql/services/songService';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { Container } from './styles';
 import { AudioPlayerProps } from './types';
@@ -118,7 +119,9 @@ export const AudioPlayer = ({ songsList }: AudioPlayerProps) => {
           />
         )}
         {/* SongInfo */}
-        <button>Like</button>
+        {songs?.length && (
+          <FavButton songID={songs[currentSong]?.id as number} />
+        )}
         {/* {songs?.length && <img src={songs[currentSong]?.image}></img>} */}
         <div>
           {songs?.length && <p>{songs[currentSong]?.name}</p>}
