@@ -1,8 +1,10 @@
 import { AudioPlayer } from '$/components/AudioPlayer';
 import { SongsList } from '$/components/SongsList';
 import { Text } from '$/components/Text';
+import { CurrentSongContext } from '$/context/currentSongContext';
 import { FavsContext } from '$/context/favsContext';
-import { useContext, useEffect } from 'react';
+import { Song } from '$/model/song';
+import { useContext, useEffect, useState } from 'react';
 
 import { useLogic } from './logic';
 import { Container, SearchInput } from './styles';
@@ -37,7 +39,7 @@ function HomeView(): JSX.Element {
         handleInputChange={handleInputChange}
       />
       <SongsList songs={songs} handleSelectChange={handleSelectChange} />
-      <AudioPlayer songsList={songs} />
+      <AudioPlayer />
     </Container>
   );
 }

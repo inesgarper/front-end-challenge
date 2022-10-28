@@ -2,7 +2,6 @@ import { FavButton } from '$/components/FavButton';
 import { Tag } from '$/components/Tag';
 import { Text } from '$/components/Text';
 import { CurrentSongContext } from '$/context/currentSongContext';
-import { FavsContext } from '$/context/favsContext';
 import { useContext, useEffect } from 'react';
 
 import { useLogic } from './logic';
@@ -19,8 +18,18 @@ import { SongsCardProps } from './types';
 export const SongCard = ({ song, index }: SongsCardProps) => {
   const { songDuration, songGenre, getSongDuration, formatSongGenre } =
     useLogic();
-  const { currentSong, isPlaying, setCurrentSongAndPlay, playSong, pauseSong } =
-    useContext(CurrentSongContext);
+  const {
+    songs,
+    currentSong,
+    isPlaying,
+    setCurrentSongAndPlay,
+    playSong,
+    pauseSong,
+  } = useContext(CurrentSongContext);
+
+  const songsIds = [
+    17, 9, 3, 1, 18, 12, 5, 16, 0, 11, 19, 14, 13, 15, 7, 8, 4, 2, 10, 6,
+  ];
 
   useEffect(() => {
     getSongDuration(song.audio.url);
@@ -46,13 +55,16 @@ export const SongCard = ({ song, index }: SongsCardProps) => {
             </Text>
           </div>
           <SongBottom>
-            {currentSong === index && isPlaying ? (
+            {songs?.[currentSong]?.id === song.id && isPlaying ? (
               <button onClick={() => pauseSong()}>Pause</button>
             ) : (
               <button
                 onClick={() => {
-                  setCurrentSongAndPlay(index);
-                  if (currentSong === index) {
+                  console.log(songsIds?.includes(song.id));
+                  console.log('la cancion', song);
+                  console.log(songs);
+                  setCurrentSongAndPlay(songsIds?.indexOf(song.id));
+                  if (currentSong === songsIds?.indexOf(song.id)) {
                     playSong();
                   }
                 }}

@@ -1,12 +1,11 @@
 import { FavButton } from '$/components/FavButton';
 import { CurrentSongContext } from '$/context/currentSongContext';
-import { useGetSongsList } from '$/graphql/services/songService';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { Container } from './styles';
-import { AudioPlayerProps } from './types';
+// import { AudioPlayerProps } from './types';
 
-export const AudioPlayer = ({ songsList }: AudioPlayerProps) => {
+export const AudioPlayer = () => {
   const {
     currentSong,
     isPlaying,
@@ -17,8 +16,7 @@ export const AudioPlayer = ({ songsList }: AudioPlayerProps) => {
     resetPlayClicked,
     resetPauseClicked,
   } = useContext(CurrentSongContext);
-
-  const songs = useGetSongsList('', 'name');
+  const { songs } = useContext(CurrentSongContext);
 
   const audio = useRef<HTMLAudioElement>(null);
 

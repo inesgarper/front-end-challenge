@@ -1,4 +1,6 @@
+import { useGetSongsList } from '$/graphql/services/songService';
 import { createContext, useState } from 'react';
+import { Song } from '$/model/song';
 
 import {
   CurrentSongContextType,
@@ -16,6 +18,7 @@ export const CurrentSongProviderWrapper = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [playClicked, setPlayClicked] = useState(false);
   const [pauseClicked, setPauseClicked] = useState(false);
+  const songs = useGetSongsList('', 'name');
 
   const playSong = () => {
     setPlayClicked(true);
@@ -44,10 +47,12 @@ export const CurrentSongProviderWrapper = ({
   return (
     <CurrentSongContext.Provider
       value={{
+        songs,
         currentSong,
         isPlaying,
         playClicked,
         pauseClicked,
+        //setPlaylist,
         setCurrentSongAndPlay,
         toggleIsPlaying,
         playSong,
