@@ -53,6 +53,7 @@ export const AudioPlayerProviderWrapper = ({
       const filteredIDs = playList?.map((song) => song.id);
       setPlayListIDs(filteredIDs);
     }
+    console.log(playList);
   }, [playList]);
 
   useEffect(() => {

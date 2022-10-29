@@ -71,7 +71,7 @@ export const AudioPlayer = () => {
         playListIDs?.[playListCurrentSong - 1] as number,
       );
 
-      if (indexOfNextSong) {
+      if (indexOfNextSong || indexOfNextSong === 0) {
         setCurrentSongAndPlay(indexOfNextSong);
         setPlayListCurrentSong(playListCurrentSong - 1);
       }
@@ -85,7 +85,6 @@ export const AudioPlayer = () => {
         playListCurrentSong === playListIDs?.length - 1) // o si es la última
     ) {
       const indexOfNextSong = songsIDs?.indexOf(playListIDs?.[0] as number);
-
       if (indexOfNextSong) {
         setCurrentSongAndPlay(indexOfNextSong);
         setPlayListCurrentSong(0);
@@ -94,7 +93,6 @@ export const AudioPlayer = () => {
       const indexOfNextSong = songsIDs?.indexOf(
         playListIDs?.[playListCurrentSong + 1] as number,
       );
-
       if (indexOfNextSong) {
         setCurrentSongAndPlay(indexOfNextSong);
         setPlayListCurrentSong(playListCurrentSong + 1);
