@@ -1,22 +1,26 @@
 import { FavButton } from '$/components/FavButton';
-import { CurrentSongContext } from '$/context/currentSongContext';
+import { AudioPlayerContext } from '$/context/audioPlayerContext';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { Container } from './styles';
-// import { AudioPlayerProps } from './types';
 
 export const AudioPlayer = () => {
   const {
+    songs,
+    songsIDs,
+    playList,
+    playListIDs,
+    playListCurrentSong,
     currentSong,
     isPlaying,
     playClicked,
     pauseClicked,
+    setPlayListCurrentSong,
     setCurrentSongAndPlay,
     toggleIsPlaying,
     resetPlayClicked,
     resetPauseClicked,
-  } = useContext(CurrentSongContext);
-  const { songs } = useContext(CurrentSongContext);
+  } = useContext(AudioPlayerContext);
 
   const audio = useRef<HTMLAudioElement>(null);
 
@@ -39,11 +43,6 @@ export const AudioPlayer = () => {
     }
   };
 
-  const playSong = () => {
-    toggleIsPlaying();
-    togglePlayAudio();
-  };
-
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const progressValue = parseInt(e.target.value);
     const currentTime = (progressValue * songDuration) / 100;
@@ -55,23 +54,56 @@ export const AudioPlayer = () => {
   };
 
   const playPrev = () => {
-    if (songs?.length && currentSong === 0) {
-      setCurrentSongAndPlay(songs?.length - 1);
+    if (
+      playListCurrentSong === -1 || // si la canción no está
+      playListCurrentSong === 0 // o si es la primera
+    ) {
+      const indexOfNextSong = songsIDs?.indexOf(
+        playListIDs?.[playListIDs?.length - 1] as number,
+      );
+
+      if (playListIDs && indexOfNextSong) {
+        setCurrentSongAndPlay(indexOfNextSong);
+        setPlayListCurrentSong(playListIDs?.length - 1);
+      }
     } else {
-      setCurrentSongAndPlay(currentSong - 1);
+      const indexOfNextSong = songsIDs?.indexOf(
+        playListIDs?.[playListCurrentSong - 1] as number,
+      );
+
+      if (indexOfNextSong) {
+        setCurrentSongAndPlay(indexOfNextSong);
+        setPlayListCurrentSong(playListCurrentSong - 1);
+      }
     }
   };
 
   const playNext = () => {
-    if (songs?.length && currentSong === songs?.length - 1) {
-      setCurrentSongAndPlay(0);
+    if (
+      playListIDs &&
+      (playListCurrentSong === -1 || // si la canción no está
+        playListCurrentSong === playListIDs?.length - 1) // o si es la última
+    ) {
+      const indexOfNextSong = songsIDs?.indexOf(playListIDs?.[0] as number);
+
+      if (indexOfNextSong) {
+        setCurrentSongAndPlay(indexOfNextSong);
+        setPlayListCurrentSong(0);
+      }
     } else {
-      setCurrentSongAndPlay(currentSong + 1);
+      const indexOfNextSong = songsIDs?.indexOf(
+        playListIDs?.[playListCurrentSong + 1] as number,
+      );
+
+      if (indexOfNextSong) {
+        setCurrentSongAndPlay(indexOfNextSong);
+        setPlayListCurrentSong(playListCurrentSong + 1);
+      }
     }
   };
 
   const handleEnd = () => {
-    if (songs?.length && currentSong === songs.length - 1) {
+    if (playList?.length && playListCurrentSong === playList.length - 1) {
       return;
     } else {
       playNext();
@@ -129,7 +161,12 @@ export const AudioPlayer = () => {
       <div>
         {/* Controls */}
         <button onClick={playPrev}>Prev</button>
-        <button onClick={() => playSong()}>
+        <button
+          onClick={() => {
+            toggleIsPlaying();
+            togglePlayAudio();
+          }}
+        >
           {isPlaying ? <span>Pause</span> : <span>Play</span>}
         </button>
         <button onClick={playNext}>Next</button>

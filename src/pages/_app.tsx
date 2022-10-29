@@ -1,6 +1,6 @@
 import '$/styles/fonts.css';
 import { Layout } from '$/containers/Layouts';
-import { CurrentSongProviderWrapper } from '$/context/currentSongContext';
+import { AudioPlayerProviderWrapper } from '$/context/audioPlayerContext';
 import { FavsProviderWrapper } from '$/context/favsContext';
 import client from '$/graphql';
 import GlobalStyle from '$/styles/global';
@@ -14,12 +14,12 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <FavsProviderWrapper>
-          <CurrentSongProviderWrapper>
+          <AudioPlayerProviderWrapper>
             <GlobalStyle />
             <Layout>
               <Component {...pageProps} />
             </Layout>
-          </CurrentSongProviderWrapper>
+          </AudioPlayerProviderWrapper>
         </FavsProviderWrapper>
       </ThemeProvider>
     </ApolloProvider>

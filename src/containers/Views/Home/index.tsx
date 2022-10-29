@@ -1,29 +1,23 @@
 import { AudioPlayer } from '$/components/AudioPlayer';
 import { SongsList } from '$/components/SongsList';
 import { Text } from '$/components/Text';
-import { CurrentSongContext } from '$/context/currentSongContext';
+import { AudioPlayerContext } from '$/context/audioPlayerContext';
 import { FavsContext } from '$/context/favsContext';
-import { Song } from '$/model/song';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { useLogic } from './logic';
 import { Container, SearchInput } from './styles';
 
 function HomeView(): JSX.Element {
-  const {
-    songsFromAPI,
-    songs,
-    setSongs,
-    handleInputChange,
-    handleSelectChange,
-  } = useLogic();
+  const { songsFromAPI, handleInputChange, handleSelectChange } = useLogic();
   const { setFavsSongs } = useContext(FavsContext);
+  const { playList, setPlayList } = useContext(AudioPlayerContext);
 
   useEffect(() => {
     if (songsFromAPI) {
-      setSongs(songsFromAPI);
+      setPlayList(songsFromAPI);
     }
-  }, [songsFromAPI, setSongs]);
+  }, [songsFromAPI, setPlayList]);
 
   useEffect(() => {
     setFavsSongs();
@@ -38,7 +32,7 @@ function HomeView(): JSX.Element {
         placeholder="Search by title, genre..."
         handleInputChange={handleInputChange}
       />
-      <SongsList songs={songs} handleSelectChange={handleSelectChange} />
+      <SongsList handleSelectChange={handleSelectChange} />
       <AudioPlayer />
     </Container>
   );

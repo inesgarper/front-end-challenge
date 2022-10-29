@@ -5,7 +5,6 @@ export const useLogic = () => {
   const [searchingValue, setSearchingValue] = useState('');
   const [sortingValue, setSortingValue] = useState('name');
   const songsFromAPI = useGetSongsList(searchingValue, sortingValue);
-  const [songs, setSongs] = useState(songsFromAPI);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchingValue(e.target.value);
@@ -17,8 +16,6 @@ export const useLogic = () => {
 
   return {
     songsFromAPI,
-    songs,
-    setSongs,
     handleInputChange,
     handleSelectChange,
   };

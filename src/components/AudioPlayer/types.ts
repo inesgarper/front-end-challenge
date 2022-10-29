@@ -1,5 +1,5 @@
 import { Song } from '$/model/song';
 
-// export type AudioPlayerProps = {
-//   songsList?: Song[] | [];
-// };
+export type AudioPlayerProps = {
+  filteredSongs?: Song[] | [];
+};
