@@ -1,8 +1,27 @@
 import { FavButton } from '$/components/FavButton';
+import { Text } from '$/components/Text';
 import { AudioPlayerContext } from '$/context/audioPlayerContext';
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import {
+  BiSkipNext as NextButton,
+  BiSkipPrevious as PrevButton,
+} from 'react-icons/bi';
+import {
+  BsFillPauseFill as PauseButton,
+  BsFillPlayFill as PlayButton,
+} from 'react-icons/bs';
 
-import { Container } from './styles';
+import {
+  AudioProgress,
+  Container,
+  Controls,
+  Image,
+  ImageContainer,
+  NextPrevButton,
+  PlayPlauseButton,
+  ProgressBar,
+  SongInfo,
+} from './styles';
 
 export const AudioPlayer = () => {
   const {
@@ -43,7 +62,7 @@ export const AudioPlayer = () => {
     }
   };
 
-  const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const progressValue = parseInt(e.target.value);
     const currentTime = (progressValue * songDuration) / 100;
 
@@ -102,7 +121,7 @@ export const AudioPlayer = () => {
 
   const handleEnd = () => {
     if (playList?.length && playListCurrentSong === playList.length - 1) {
-      return;
+      toggleIsPlaying();
     } else {
       playNext();
     }
@@ -131,7 +150,7 @@ export const AudioPlayer = () => {
 
   return (
     <Container>
-      <div>
+      <SongInfo>
         {songs?.length && (
           <audio
             ref={audio}
@@ -146,39 +165,56 @@ export const AudioPlayer = () => {
             onEnded={handleEnd}
           />
         )}
-        {/* SongInfo */}
         {songs?.length && (
           <FavButton songID={songs[currentSong]?.id as number} />
         )}
-        {/* {songs?.length && <img src={songs[currentSong]?.image}></img>} */}
+        {songs?.length && (
+          <ImageContainer>
+            <Image src={songs[currentSong]?.image} />
+          </ImageContainer>
+        )}
         <div>
-          {songs?.length && <p>{songs[currentSong]?.name}</p>}
-          {songs?.length && <p>{songs[currentSong]?.author.name}</p>}
+          {songs?.length && (
+            <Text tag="h4" variant="body2" color="white">
+              {songs[currentSong]?.name}
+            </Text>
+          )}
+          {songs?.length && (
+            <Text tag="h5" variant="caption" color="white">
+              {songs[currentSong]?.author.name}
+            </Text>
+          )}
         </div>
-      </div>
-      <div>
-        {/* Controls */}
-        <button onClick={playPrev}>Prev</button>
-        <button
+      </SongInfo>
+      <Controls>
+        <NextPrevButton onClick={playPrev}>
+          <PrevButton />
+        </NextPrevButton>
+        <PlayPlauseButton
           onClick={() => {
             toggleIsPlaying();
             togglePlayAudio();
           }}
         >
-          {isPlaying ? <span>Pause</span> : <span>Play</span>}
-        </button>
-        <button onClick={playNext}>Next</button>
-      </div>
-      <div>
-        {/* ProgressBar */}
-        <p>{formatTime(songCurrentTime)}</p>
-        <input
+          {isPlaying ? <PauseButton /> : <PlayButton />}
+        </PlayPlauseButton>
+        <NextPrevButton onClick={playNext}>
+          <NextButton />
+        </NextPrevButton>
+      </Controls>
+      <AudioProgress>
+        <Text tag="p" variant="caption" color="white">
+          {formatTime(songCurrentTime)}
+        </Text>
+        <ProgressBar
           type="range"
           value={songDuration ? (songCurrentTime * 100) / songDuration : 0}
-          onChange={handleProgressChange}
+          onChange={handleRangeChange}
         />
-        <p>{formatTime(songDuration)}</p>
-      </div>
+        <Text tag="p" variant="caption" color="white">
+          {formatTime(songDuration)}
+        </Text>
+      </AudioProgress>
     </Container>
   );
 };

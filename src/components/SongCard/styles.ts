@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.article`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 140px;
   margin-bottom: 40px;
@@ -25,6 +26,21 @@ export const ImageContainer = styled.div`
   margin-right: 0.8rem;
 `;
 
+export const AnimationContainer = styled.div`
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.25rem;
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 export const SongInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,4 +53,18 @@ export const SongBottom = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+`;
+
+export const PlayPauseButton = styled.button`
+  background: ${({ theme }) => theme.color.grayscale900};
+  color: ${({ theme }) => theme.color.white};
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
 `;

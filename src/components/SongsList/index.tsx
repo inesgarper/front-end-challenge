@@ -5,7 +5,7 @@ import { AudioPlayerContext } from '$/context/audioPlayerContext';
 import { Reorder } from 'framer-motion';
 import { useContext } from 'react';
 
-import { Container, ListElement } from './styles';
+import { Container } from './styles';
 import { SongsListProps } from './types';
 
 export const SongsList = ({ handleSelectChange }: SongsListProps) => {

@@ -1,17 +1,26 @@
+import animationSrc from '$/assets/animations/playing-bars.json';
 import { FavButton } from '$/components/FavButton';
 import { Tag } from '$/components/Tag';
 import { Text } from '$/components/Text';
 import { AudioPlayerContext } from '$/context/audioPlayerContext';
+import { Player } from '@lottiefiles/react-lottie-player';
 import { useContext, useEffect } from 'react';
+import {
+  BsFillPauseFill as PauseButton,
+  BsFillPlayFill as PlayButton,
+} from 'react-icons/bs';
 
 import { useLogic } from './logic';
 import {
+  AnimationContainer,
   Container,
   Image,
   ImageContainer,
+  PlayPauseButton,
   SongBottom,
   SongContainer,
   SongInfo,
+  TitleContainer,
 } from './styles';
 import { SongsCardProps } from './types';
 
@@ -32,6 +41,11 @@ export const SongCard = ({ song }: SongsCardProps) => {
     pauseSong,
   } = useContext(AudioPlayerContext);
 
+  const style = {
+    width: 13,
+    heigh: 13,
+  };
+
   useEffect(() => {
     getSongDuration(song.audio.url);
     formatSongGenre(song.genre);
@@ -45,9 +59,21 @@ export const SongCard = ({ song }: SongsCardProps) => {
         </ImageContainer>
         <SongInfo>
           <div>
-            <Text tag="h3" variant="bodyBold" color={'grayscale900'}>
-              {song.name}
-            </Text>
+            <TitleContainer>
+              {songs?.[currentSong]?.id === song.id && isPlaying ? (
+                <AnimationContainer>
+                  <Player
+                    src={animationSrc}
+                    autoplay={true}
+                    loop={true}
+                    style={style}
+                  />
+                </AnimationContainer>
+              ) : null}
+              <Text tag="h3" variant="bodyBold" color={'grayscale900'}>
+                {song.name}
+              </Text>
+            </TitleContainer>
             <Text tag="p" variant="body" color={'grayscale700'}>
               {song.author.name}
             </Text>
@@ -57,14 +83,11 @@ export const SongCard = ({ song }: SongsCardProps) => {
           </div>
           <SongBottom>
             {songs?.[currentSong]?.id === song.id && isPlaying ? (
-              <h1
-                onClick={() => pauseSong()}
-                style={{ backgroundColor: 'red', fontSize: 40 }}
-              >
-                Pause
-              </h1>
+              <PlayPauseButton onClick={() => pauseSong()}>
+                <PauseButton />
+              </PlayPauseButton>
             ) : (
-              <button
+              <PlayPauseButton
                 onClick={() => {
                   if (songsIDs) {
                     setCurrentSongAndPlay(songsIDs?.indexOf(song.id));
@@ -77,8 +100,8 @@ export const SongCard = ({ song }: SongsCardProps) => {
                   }
                 }}
               >
-                Play
-              </button>
+                <PlayButton />
+              </PlayPauseButton>
             )}
             <Text tag="p" variant="caption" color={'grayscale700'}>
               {songDuration} min
