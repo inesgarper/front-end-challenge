@@ -6,6 +6,8 @@ const GlobalStyle = createGlobalStyle`
   ${normalize};
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   body {
     font-family: 'Jakarta', -apple-system, BlinkMacSystemFont, "Segoe UI",

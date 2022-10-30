@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const ListElement = styled.ul`
-  list-style-type: none;
-  padding-inline-start: 0;
-`;
+export const ListElement = {
+  listStyleType: 'none',
+  paddingInlineStyle: 0,
+};
