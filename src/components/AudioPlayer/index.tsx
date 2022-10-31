@@ -1,8 +1,8 @@
 import { FavButton } from '$/components/FavButton';
 import { Text } from '$/components/Text';
 import { AudioPlayerContext } from '$/context/audioPlayerContext';
-import { formatTime } from '$/utils/formatTime';
-import React, { useContext, useEffect } from 'react';
+import { formatTime } from '$/utils/formatters';
+import React, { useContext } from 'react';
 import {
   BiSkipNext as NextButton,
   BiSkipPrevious as PrevButton,

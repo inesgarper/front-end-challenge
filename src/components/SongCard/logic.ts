@@ -1,25 +1,23 @@
-import { useState } from 'react';
+import { AudioPlayerContext } from '$/context/audioPlayerContext';
+import { Song } from '$/model/song';
+import { formatSecsToMins, formatTagText } from '$/utils/formatters';
+import { useContext, useEffect, useState } from 'react';
 
-export const useLogic = () => {
+export const useLogic = (song: Song) => {
+  const {
+    songsIDs,
+    playListIDs,
+    currentSong,
+    setCurrentSongAndPlay,
+    setPlayListCurrentSong,
+    playSong,
+  } = useContext(AudioPlayerContext);
+
   const [songDuration, setSongDuration] = useState(0);
   const [songGenre, setSongGenre] = useState('');
 
-  const formatSecsToMins = (seconds: number) => Math.ceil(seconds / 60);
-
   const formatSongGenre = (genre: string) => {
-    const lowerGenre = genre.toLowerCase().split('_');
-    let formatedGenre = '';
-
-    lowerGenre.forEach((word, i) => {
-      const capitalLetter = word[0]?.toUpperCase() as string;
-
-      if (i === 0) {
-        formatedGenre = `${capitalLetter}${word.slice(1)}`;
-      } else {
-        formatedGenre += ` ${capitalLetter}${word.slice(1)}`;
-      }
-    });
-    setSongGenre(formatedGenre);
+    setSongGenre(formatTagText(genre));
   };
 
   const getSongDuration = (url: string) => {
@@ -30,10 +28,25 @@ export const useLogic = () => {
     };
   };
 
+  const setPlayListCurrentSongAndPlay = (songID: number) => {
+    if (songsIDs) {
+      setCurrentSongAndPlay(songsIDs?.indexOf(songID));
+      setPlayListCurrentSong(playListIDs?.indexOf(songID) as number);
+
+      if (currentSong === songsIDs?.indexOf(songID)) {
+        playSong();
+      }
+    }
+  };
+
+  useEffect(() => {
+    getSongDuration(song.audio.url);
+    formatSongGenre(song.genre);
+  }, []);
+
   return {
     songDuration,
     songGenre,
-    formatSongGenre,
-    getSongDuration,
+    setPlayListCurrentSongAndPlay,
   };
 };

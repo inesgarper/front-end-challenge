@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { from } from '$/styles/utils/responsive';
+import styled from 'styled-components';
 
 export const Container = styled.article`
   display: flex;
@@ -71,3 +71,8 @@ export const PlayPauseButton = styled.button`
   align-items: center;
   margin-right: 10px;
 `;
+
+export const animationStyles = {
+  width: 30,
+  height: 30,
+};

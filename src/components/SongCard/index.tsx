@@ -4,7 +4,7 @@ import { Tag } from '$/components/Tag';
 import { Text } from '$/components/Text';
 import { AudioPlayerContext } from '$/context/audioPlayerContext';
 import { Player } from '@lottiefiles/react-lottie-player';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import {
   BsFillPauseFill as PauseButton,
   BsFillPlayFill as PlayButton,
@@ -13,6 +13,7 @@ import {
 import { useLogic } from './logic';
 import {
   AnimationContainer,
+  animationStyles,
   Container,
   Image,
   ImageContainer,
@@ -25,31 +26,10 @@ import {
 import { SongsCardProps } from './types';
 
 export const SongCard = ({ song }: SongsCardProps) => {
-  const { songDuration, songGenre, getSongDuration, formatSongGenre } =
-    useLogic();
-  const {
-    songs,
-    songsIDs,
-    playList,
-    playListIDs,
-    currentSong,
-    playListCurrentSong,
-    isPlaying,
-    setPlayListCurrentSong,
-    setCurrentSongAndPlay,
-    playSong,
-    pauseSong,
-  } = useContext(AudioPlayerContext);
-
-  const style = {
-    width: 13,
-    heigh: 13,
-  };
-
-  useEffect(() => {
-    getSongDuration(song.audio.url);
-    formatSongGenre(song.genre);
-  }, []);
+  const { songDuration, songGenre, setPlayListCurrentSongAndPlay } =
+    useLogic(song);
+  const { songs, currentSong, isPlaying, pauseSong } =
+    useContext(AudioPlayerContext);
 
   return (
     <Container>
@@ -66,7 +46,7 @@ export const SongCard = ({ song }: SongsCardProps) => {
                     src={animationSrc}
                     autoplay={true}
                     loop={true}
-                    style={style}
+                    style={animationStyles}
                   />
                 </AnimationContainer>
               ) : null}
@@ -88,17 +68,7 @@ export const SongCard = ({ song }: SongsCardProps) => {
               </PlayPauseButton>
             ) : (
               <PlayPauseButton
-                onClick={() => {
-                  if (songsIDs) {
-                    setCurrentSongAndPlay(songsIDs?.indexOf(song.id));
-                    setPlayListCurrentSong(
-                      playListIDs?.indexOf(song.id) as number,
-                    );
-                    if (currentSong === songsIDs?.indexOf(song.id)) {
-                      playSong();
-                    }
-                  }
-                }}
+                onClick={() => setPlayListCurrentSongAndPlay(song.id)}
               >
                 <PlayButton />
               </PlayPauseButton>
