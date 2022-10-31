@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { from, sizes } from '$/styles/utils/responsive';
 
 export const Container = styled.article`
   display: flex;

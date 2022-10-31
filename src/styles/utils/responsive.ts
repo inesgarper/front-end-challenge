@@ -10,6 +10,8 @@ export const sizes = {
 
 const minWidthQuery = (width: number) => `@media (min-width: ${width}px)`;
 
+const maxWidthQuery = (width: number) => `@media (max-width: ${width}px)`;
+
 export const from = keysOf(sizes).reduce(
   (
     acc: {
@@ -18,7 +20,7 @@ export const from = keysOf(sizes).reduce(
     key: keyof typeof sizes,
   ) => ({
     ...acc,
-    [key]: minWidthQuery(sizes[key]),
+    [key]: maxWidthQuery(sizes[key]),
   }),
   {},
 );

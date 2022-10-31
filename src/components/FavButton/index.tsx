@@ -27,9 +27,11 @@ export const FavButton = ({ songID }: FavButtonProps) => {
     if (animation && animation.current) {
       if (favourites.includes(songID)) {
         animation.current.setSeeker(30);
+      } else {
+        animation.current.setSeeker(0);
       }
     }
-  }, [animationIsReady]);
+  }, [animationIsReady, currentSong]);
 
   useEffect(() => {
     if (animation && animation.current) {
@@ -41,7 +43,7 @@ export const FavButton = ({ songID }: FavButtonProps) => {
         animation.current.play();
       }
     }
-  }, [favourites, currentSong]);
+  }, [favourites]);
 
   return (
     <Button onClick={() => toggleFavs(songID)}>
