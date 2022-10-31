@@ -1,17 +1,23 @@
 import { AudioPlayerContext } from '$/context/audioPlayerContext';
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { useConstants } from './constants';
 
 export const useLogic = () => {
   const {
     songsIDs,
+    currentSong,
     playList,
     playListCurrentSong,
     playListIDs,
+    isPlaying,
+    playClicked,
+    pauseClicked,
     setCurrentSongAndPlay,
     setPlayListCurrentSong,
     toggleIsPlaying,
+    resetPlayClicked,
+    resetPauseClicked,
   } = useContext(AudioPlayerContext);
   const {
     currentSongIsNotInPlaylist,
@@ -82,6 +88,27 @@ export const useLogic = () => {
       playNext();
     }
   };
+
+  useEffect(() => {
+    if (isPlaying) {
+      togglePlayAudio();
+    }
+  }, [currentSong]);
+
+  useEffect(() => {
+    if (playClicked) {
+      togglePlayAudio();
+      resetPlayClicked();
+    }
+  }, [playClicked]);
+
+  useEffect(() => {
+    if (pauseClicked) {
+      toggleIsPlaying();
+      togglePlayAudio();
+      resetPauseClicked();
+    }
+  }, [pauseClicked]);
 
   return {
     audio,

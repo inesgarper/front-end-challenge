@@ -26,16 +26,8 @@ import {
 } from './styles';
 
 export const AudioPlayer = () => {
-  const {
-    songs,
-    currentSong,
-    isPlaying,
-    playClicked,
-    pauseClicked,
-    toggleIsPlaying,
-    resetPlayClicked,
-    resetPauseClicked,
-  } = useContext(AudioPlayerContext);
+  const { songs, currentSong, isPlaying, toggleIsPlaying } =
+    useContext(AudioPlayerContext);
   const {
     audio,
     songDuration,
@@ -48,27 +40,6 @@ export const AudioPlayer = () => {
     playNext,
     handleEnd,
   } = useLogic();
-
-  useEffect(() => {
-    if (isPlaying) {
-      togglePlayAudio();
-    }
-  }, [currentSong]);
-
-  useEffect(() => {
-    if (playClicked) {
-      togglePlayAudio();
-      resetPlayClicked();
-    }
-  }, [playClicked]);
-
-  useEffect(() => {
-    if (pauseClicked) {
-      toggleIsPlaying();
-      togglePlayAudio();
-      resetPauseClicked();
-    }
-  }, [pauseClicked]);
 
   return (
     <Container>

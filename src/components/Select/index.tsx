@@ -1,4 +1,4 @@
-import { SelectInput, Option } from './styles';
+import { SelectInput } from './styles';
 import { SelectProps } from './types';
 
 export const Select = ({ handleSelectChange }: SelectProps) => (

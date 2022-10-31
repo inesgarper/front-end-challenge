@@ -9,3 +9,8 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
 `;
+
+export const animationStyles = {
+  width: 35,
+  heigth: 35,
+};

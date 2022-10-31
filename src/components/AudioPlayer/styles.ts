@@ -46,10 +46,6 @@ export const Image = styled.img`
   border-radius: 0.75rem;
 `;
 
-// export const TextContainer = styled.div`
-//   width: ;
-// `;
-
 export const NextPrevButton = styled.button`
   background: none;
   border: none;
