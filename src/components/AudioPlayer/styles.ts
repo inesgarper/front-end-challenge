@@ -14,21 +14,21 @@ export const Container = styled.div`
   height: 5rem;
   border-radius: 1rem 1rem 0 0;
 
-  ${from['tabletLandscape']} {
+  /* ${from['tabletLandscape']} {
     height: 8rem;
     flex-wrap: wrap;
   }
 
   ${from['tabletPortrait']} {
     height: 12rem;
-  }
+  } */
 `;
 
 export const SongInfo = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 480px;
+  width: 30rem;
   margin-left: 2rem;
 `;
 
@@ -54,7 +54,7 @@ export const NextPrevButton = styled.button`
   background: none;
   border: none;
   color: ${({ theme }) => theme.color.white};
-  font-size: 40px;
+  font-size: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,9 +65,9 @@ export const PlayPlauseButton = styled.button`
   color: ${({ theme }) => theme.color.grayscale900};
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 32px;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,8 +79,8 @@ export const Controls = styled.div`
   align-items: center;
   margin-left: 2rem;
   margin-right: 2rem;
-  width: 136px;
-  height: 40px;
+  width: 8.5rem;
+  height: 2.5rem;
 `;
 
 export const AudioProgress = styled.div`
@@ -89,38 +89,38 @@ export const AudioProgress = styled.div`
   align-items: center;
   margin-right: 2rem;
   margin-left: 2rem;
-  height: 12px;
-  width: 450px;
-  ${from['tabletLandscape']} {
+  height: 0.75rem;
+  width: 28.125rem;
+  /* ${from['tabletLandscape']} {
     flex-basis: 100%;
     width: 100%;
-  }
+  } */
 `;
 
 export const ProgressBar = styled.input`
   appearance: none;
   background: #88cffb;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   outline: none;
-  width: 400px;
-  height: 4px;
+  width: 25rem;
+  height: 0.25rem;
   margin-left: 0.6rem;
   margin-right: 0.6rem;
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 10px;
-    width: 10px;
+    height: 0.625rem;
+    width: 0.625rem;
     border-radius: 50%;
     border: none;
     background-color: ${({ theme }) => theme.color.white};
     cursor: pointer;
-    margin: -2px 0 0 0;
-    z-index: 3;
+    margin: -0.125rem 0 0 0;
+    // z-index: 3;
     box-sizing: border-box;
   }
 
-  ${from['tabletLandscape']} {
+  /* ${from['tabletLandscape']} {
     width: 95%;
-  }
+  } */
 `;

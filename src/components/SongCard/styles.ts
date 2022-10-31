@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { from, sizes } from '$/styles/utils/responsive';
+import { from } from '$/styles/utils/responsive';
 
 export const Container = styled.article`
   display: flex;
@@ -12,6 +12,7 @@ export const Container = styled.article`
 
 export const SongContainer = styled.div`
   display: flex;
+  // width: 65%;
 `;
 
 export const Image = styled.img`
@@ -46,6 +47,7 @@ export const SongInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  // width: 65%;
   width: 37.688rem;
   height: 136px;
 `;
