@@ -14,12 +14,12 @@ export const Container = styled.div`
   height: 5rem;
   border-radius: 1rem 1rem 0 0;
 
-  /* ${from['tabletLandscape']} {
+  ${from['tabletLandscape']} {
     height: 8rem;
     flex-wrap: wrap;
   }
 
-  ${from['tabletPortrait']} {
+  /* ${from['tabletPortrait']} {
     height: 12rem;
   } */
 `;
@@ -30,6 +30,10 @@ export const SongInfo = styled.div`
   align-items: center;
   width: 30rem;
   margin-left: 2rem;
+
+  ${from['tabletPortrait']} {
+    width: 15rem;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -54,6 +58,10 @@ export const NextPrevButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.color.grayscale100};
+  }
 `;
 
 export const PlayPlauseButton = styled.button`
@@ -67,6 +75,10 @@ export const PlayPlauseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    background: ${({ theme }) => theme.color.grayscale100};
+  }
 `;
 
 export const Controls = styled.div`
@@ -87,10 +99,10 @@ export const AudioProgress = styled.div`
   margin-left: 2rem;
   height: 0.75rem;
   width: 28.125rem;
-  /* ${from['tabletLandscape']} {
+  ${from['tabletLandscape']} {
     flex-basis: 100%;
     width: 100%;
-  } */
+  }
 `;
 
 export const ProgressBar = styled.input`
@@ -116,7 +128,7 @@ export const ProgressBar = styled.input`
     box-sizing: border-box;
   }
 
-  /* ${from['tabletLandscape']} {
+  ${from['tabletLandscape']} {
     width: 95%;
-  } */
+  }
 `;

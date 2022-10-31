@@ -1,5 +1,6 @@
 import { from } from '$/styles/utils/responsive';
 import styled from 'styled-components';
+import { Text } from '$/components/Text';
 
 export const Container = styled.article`
   display: flex;
@@ -12,7 +13,10 @@ export const Container = styled.article`
 
 export const SongContainer = styled.div`
   display: flex;
-  // width: 65%;
+  ${from['tabletPortrait']} {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Image = styled.img`
@@ -26,6 +30,10 @@ export const ImageContainer = styled.div`
   width: 8.75rem;
   height: 8.75rem;
   margin-right: 0.8rem;
+  /* ${from['tabletPortrait']} {
+    width: 7rem;
+    height: 7rem;
+  } */
 `;
 
 export const AnimationContainer = styled.div`
@@ -47,9 +55,17 @@ export const SongInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  // width: 65%;
   width: 37.688rem;
   height: 136px;
+  ${from['tabletLandscape']} {
+    width: 65%;
+  }
+`;
+
+export const TextDescription = styled(Text)`
+  ${from['tabletPortrait']} {
+    display: none;
+  }
 `;
 
 export const SongBottom = styled.div`
@@ -70,9 +86,10 @@ export const PlayPauseButton = styled.button`
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 export const animationStyles = {
-  width: 30,
-  height: 30,
+  width: 15,
+  height: 15,
 };

@@ -21,6 +21,7 @@ import {
   SongBottom,
   SongContainer,
   SongInfo,
+  TextDescription,
   TitleContainer,
 } from './styles';
 import { SongsCardProps } from './types';
@@ -57,9 +58,9 @@ export const SongCard = ({ song }: SongsCardProps) => {
             <Text tag="p" variant="body" color={'grayscale700'}>
               {song.author.name}
             </Text>
-            <Text tag="p" variant="body2" color={'grayscale700'}>
+            <TextDescription tag="p" variant="body2" color={'grayscale700'}>
               {song.description}
-            </Text>
+            </TextDescription>
           </div>
           <SongBottom>
             {songs?.[currentSong]?.id === song.id && isPlaying ? (

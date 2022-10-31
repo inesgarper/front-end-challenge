@@ -20,10 +20,6 @@ export const Main = styled.main`
   width: 100%;
   padding-inline: 2.5rem;
   overflow-x: scroll;
-
-  ${from['tabletLandscape']} {
-    padding-inline: 6rem;
-  }
 `;
 
 export const ContentWrapper = styled.div`
