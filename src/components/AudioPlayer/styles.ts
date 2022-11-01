@@ -18,10 +18,6 @@ export const Container = styled.div`
     height: 8rem;
     flex-wrap: wrap;
   }
-
-  /* ${from['tabletPortrait']} {
-    height: 12rem;
-  } */
 `;
 
 export const SongInfo = styled.div`
@@ -109,11 +105,11 @@ export const ProgressBar = styled.input`
   appearance: none;
   background: #88cffb;
   border-radius: 1.25rem;
-  outline: none;
   width: 25rem;
   height: 0.25rem;
   margin-left: 0.6rem;
   margin-right: 0.6rem;
+  outline: none;
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -123,9 +119,6 @@ export const ProgressBar = styled.input`
     border: none;
     background-color: ${({ theme }) => theme.color.white};
     cursor: pointer;
-    margin: -0.125rem 0 0 0;
-    // z-index: 3;
-    box-sizing: border-box;
   }
 
   ${from['tabletLandscape']} {

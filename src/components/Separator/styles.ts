@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { from } from '$/styles/utils/responsive';
+import styled from 'styled-components';
 
 import { ContainerProps } from './types';
 
@@ -16,6 +16,7 @@ export const Container = styled.div<ContainerProps>`
   background-size: 1rem 1rem;
   margin-block-start: ${({ $spaceBlockStart }) => $spaceBlockStart};
   margin-block-end: ${({ $spaceBlockEnd }) => $spaceBlockEnd};
+
   ${from['tabletLandscape']} {
     display: none;
   }

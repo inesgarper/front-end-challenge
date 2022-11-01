@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { from } from '$/styles/utils/responsive';
+import styled from 'styled-components';
 
 import { StyledMenuItemLinkProps, StyledMenuItemProps } from './types';
 
@@ -12,7 +12,7 @@ export const Container = styled.aside`
   background-color: ${({ theme }) => theme.color.grayscale50};
   ${from['tabletLandscape']} {
     width: 100%;
-    height: 100px;
+    height: 6.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
