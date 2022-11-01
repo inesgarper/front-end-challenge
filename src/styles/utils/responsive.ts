@@ -8,7 +8,7 @@ export const sizes = {
   desktop: 1800,
 };
 
-const minWidthQuery = (width: number) => `@media (min-width: ${width}px)`;
+// const minWidthQuery = (width: number) => `@media (min-width: ${width}px)`;
 
 const maxWidthQuery = (width: number) => `@media (max-width: ${width}px)`;
 
