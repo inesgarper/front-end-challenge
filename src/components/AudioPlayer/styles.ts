@@ -30,6 +30,10 @@ export const SongInfo = styled.div`
   ${from['tabletPortrait']} {
     width: 15rem;
   }
+
+  ${from['mobile']} {
+    width: 12rem;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -55,9 +59,6 @@ export const NextPrevButton = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  &:hover {
-    color: ${({ theme }) => theme.color.grayscale100};
-  }
 `;
 
 export const PlayPlauseButton = styled.button`
@@ -72,9 +73,6 @@ export const PlayPlauseButton = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  &:hover {
-    background: ${({ theme }) => theme.color.grayscale100};
-  }
 `;
 
 export const Controls = styled.div`

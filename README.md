@@ -1,129 +1,69 @@
-# Z1 Front-end Challenge
+### 🏁 Instalar e iniciar el proyecto
 
-![](https://github.com/z1digitalstudio/front-end-challenge/blob/main/public/cover.jpg?raw=true)
+Clona o descarga el repositorio, y ejecútalo en tu terminal usando en orden los siguientes comandos:
 
-Here in Z1 we love music! We want to share of fav tunes with you, but for that **we need your help to finish our music application**.
+```bash
+  yarn install
+```
 
-We want you to experiment as much as possible the way we work. In your day-to-day work at Z1, there'll be occasions when you will need to jump in the middle of a project to implement a new feature.
+```bash
+  yarn run dev
+```
 
-In situations like those it's important you **take your time for gaining context**, understanding how the project works and what needs to be accomplished **before rushing to start writing code**.
+Una vez hecho esto, tendrás disponible el proyecto en `http://localhost:3000`
 
-So for this technical challenge, you'll be doing exactly that! You're responsible for adding **two brand new features to our music application**.
+O también puedes ver la [➡️ **DEMO AQUÍ** ⬅️](https://inesgarper-front-end-challenge.vercel.app/)
 
-* [The Challenge](#The-Challenge)
-* [Design resources](#Design-resources)
-* [API](#API)
-* [Requisites](#Requisites)
-* [Stack and tech considerations](#Stack-and-tech-considerations)
-* [Evaluation criteria](#Evaluation-criteria)
-* [About Z1](#About-Z1)
-* [Contact](#Contact)
+### ⚙️ Funcionalidades de la app
 
-**To start**:
+- Mostrar la lista de canciones. ✅
 
-Star by **forking this project**. Remember to read the requisites carefully before starting writing code. Take a look at at `package.json` scripts to learn how to launch the project.
+- Reproducir cualquier canción seleccionada. ✅
 
-Remember to **replace this README** with another one containing anything a person needs to know about how to launch the project as well as any relevant information about your thought process and the decisions you made to get to a solution.
+- Pausar y volver a reproducir la canción en el punto en el que la dejaste, tanto desde el reproductor como desde la playlist. ✅
+- Moverte entre las canciones de la playlist con las flechas del reproductor. ✅
+- Modificar el minuto de reproducción desde la barra de progreso. ✅
+- Marcar tus canciones favoritas de forma persistente (¡No se pierden al refrescar la página! 🙌🏻). ✅
 
-## The Challenge
+#### Y además:
 
-What you need to do is:
+- Puedes modificar la playlist filtrando y ordenando las canciones por nombre, autor o género. Todo esto se hace desde la API.
 
-### Feature #1: Display the song list 🎶
+- ¡Las canciones son arrastrables! Puedes arrastrar la tarjeta de una canción hacia arriba o hacia abajo, y así cambiar el orden de reproducción de la playlist para personalizarla al máximo. (Gracias, [Framer](https://www.framer.com/docs/reorder/) 💙)
+- Si la canción termina, se reproduce la siguiente de forma automática. Si la canción es la última de la playlist, al terminar vuelve a reproducir la primera.
+- La web es full responsive. Como ya la había diseñado en Desktop first, modifiqué el util que gestiona las media queries para que fuera max-width y poder aprovecharlo ✌🏻
+- He añadido un par de lotties, concepto totalmente desconocido para mí hasta hace dos semanas. Después de investigar varias alternativas, me decanté por [lottie-react de LottiesFiles](https://github.com/LottieFiles/lottie-react), ya que me permitía implementar todo lo que necesitaba de forma bastante sencilla para lo novata que soy en animaciones.
 
-- You will need to **fetch the songs and display them** accordingly to the design
-- Also, we need the user to be able to **save its fav tunes**. Unfortunately, **our endpoint does not provide a method** to do so. So we need to **find an alternative** method to persist user’s faves.
+### 🔜 Tareas pendientes:
 
-### Feature #2: Let's the music play! 🔊
+- **Accesibilidad**: Por desgracia es un tema que no controlo mucho y necesito investigar 😔
 
-- By clicking on the play button on each card, the song needs to be load on the player and start playing
-- Player needs to be fully functional: user needs to be able to **play, pause and change the second of reproduction**
+- **Estilos del dropdown y el input de tipo range**: Me he estado pegando con ellos, pero no he logrado que el resultado sea parecido al diseño original y lamentablemente necesitaba invertir el tiempo en otras tareas. Espero poder lograrlos más adelante con más calma.
+- **Tests y Storybook**: Ambos me pillaban completamente de nuevas, como muchas de las tecnologías del proyecto, y estas dos han tenido que ser tristemente sacrificadas por falta de tiempo. En el caso de los tests, sí que había realizado alguno con Jest para el backend, pero nunca he testeado un componente. Ojalá poder dejar de decir esto muy pronto.
 
-## Design resources
-Our friends from the design team prepared **for how we want things to look like** and made a very fancy UI.
-- [Figma Design](https://www.figma.com/file/0cV6hohYTFHIvKqzHHRrtn/Front-End-Team-challenge) 
+Estoy segura de que hay muchas más cosas que mejorar, por supuesto. Al fin y al cabo, esta no deja de ser **la primera prueba técnica de mi vida**. Han sido dos semanas muy intensas en las que la inseguridad y la inexperiencia me han hecho dudar en algún momento si conseguiría entregar un ejercicio decente. Pero aquí estoy dos semanas más tarde, con un reproductor de audio funcional, en un stack prácticamente nuevo para mí.
 
-## API
-A **GraphQL endpoint** our backend friends created **for fetching our favorite songs**
-- `https://api-frontend-challenge.herokuapp.com/graphql`
+Y lo mejor de todo, también me llevo una lista gigante de aprendizajes ⬇️ ⬇️ ⬇️
 
-## Requisites
+### 💪🏻 Aprendizajes
 
-This is a more detailed list of all the requisites you should bear in mind for creating an incredible product. **Feel free to go as further as you feel comfortable** and show us what you can do!
+- **yarn**: Quizás parece una tontería, pero para alguien prácticamente recién salido de un Bootcamp y sin experiencia laboral como developer, tirar un `npm install` y ver toda la consola en rojo, asusta y mucho. Todavía no he iniciado el proyecto y ya da error. Empezamos bien. Menos mal que todo quedó en una anécdota cuando descubrí que era culpa de 'la dependencia' `$`, que me obligó a instalar yarn en mi equipo para que eso tirase, pero me ha dejado unas importaciones preciosas en todo el proyecto 💅🏻
 
-### Make things work! 👌
+- **Next.js**: Bueno, una vez levantado el proyecto, tocaba meterse en faena. La faena: averiguar qué es Next. 8 horas de vídeo de Midudev y un rato leyendo documentación más tarde, había cumplido mi objetivo. O por lo menos tenía el conocimiento de Next.js suficiente para afrontar la prueba.
+- **GraphQL**: ¡Por fin algo familiar! En verano desarrollé un servidor de GraphQL para un proyecto personal y una semana antes de empezar esta prueba estaba inicializando el cliente de Apollo, así que pensaba que esto estaría chupado. Lo que parecía sencillo se complicó cuando probé a implementar `useQuery` para hacer la llamada a la API. Un linter chivato me estaba diciendo que no podía hacerlo dentro de una función cualquiera. Debía ser un hook de React. Y así nacío mi primer custom hook. Acostumbrada a crear métodos para hacer las llamadas a la API y ejercutarlos dentro de un useEffect, como hacíamos en el Bootcamp, me chocó bastante no poder usar el custom hook ahí dentro también. Estuve un buen rato para averiguar que cada vez que el valor de alguno de los argumentos (search o sort) se actualizaba, se ejecutaba una nueva llamada. ¿Magia? No lo sé, pero desde ese momento soy fan de useQuery.
+- **Estructura de archivos, TypeScript y styled-components**: Como comentaba, muchos de los problemas que he tenido han sido en parte por no estar familiarizada con approachs diferentes a los vistos en el Bootcamp. Pero contradictoriamente, gracias al starter code de esta misma prueba y su estructura de archivos, he encontrado una guía sobre cómo utilizar TypeScript o styled-components (a pesar de tener muy poquita experiencia en esas tecnologías), o cómo separar la lógica y los estilos en un componente. Siento que enfrentarme a esta prueba me ha permitido acercarme a un entorno real y de calidad, que va a llevar mis proyectos a un siguiente nivel. Así que siempre voy a estar agradecida por esta oportunidad ✨
+- **Planificación**: Ahora que el stack estaba más o menos controlado, llegaba el momento de implementar la lógica del reproductor. Aquí quiero destacar la importancia de una buena planificación, ya que la mala me ha hecho refactorizar el código un par de veces 😅
 
-- User should be able to:
-  - see list of songs
-  - listen to any song they choose
-  - play and pause song
-  - control track
-  - mark a song as favorite
+  Como era mi primera vez desarrollando un reproductor de audio, quise hacer unas pruebas antes de ponerme con el proyecto para tener claro el flujo que debía seguir. Hardcodeé una pequeña lista de canciones y me puse manos a la obra.
 
-### Prepare for a challenge! 🚀
+  Cuando parecía que ya lo tenía y me puse a implementarlo con la lista de canciones real, todo parecía ir bien. La alegría duró lo que tardé en hacer el primer filtrado. **Primer imprevisto**: no había tenido en cuenta que la playlist CAMBIA. Cada vez que la playlist se filtraba o se reordenaba, la `currentSong`, cambiaba y empezaba a reproducirse. Creedme, no querríais haber oído eso.
 
-- User should be able to:
-  - move between songs with the prev/next buttons of the audio player
+  La mejor manera que encontré de solucionarlo fue teniendo dos playlists: una fija, con todas las canciones ordenadas siempre igual, asociada a la lógica del reproductor de audio, y otra dinámica asociada a la playlist cambiante. Cada vez que clickase en una canción de la playlist dinámica, esa canción se buscaría en la playlist fija y sonaría en el reproductor. ¿Fácil, no? Pues se viene el...
 
-### Go for an extra mile! 🔥
+  **Segundo imprevisto**: al ser dos playlist distintas con instancias de canciones distintas, la canción de la playlist fija y la de la playlist dinámica no se podían comparar. Tocaba refactorizar de nuevo para hacer las comparaciones y búsquedas en base a sus IDs en ambas playlists. De esta forma, todo empezó a encajar 💪🏻
 
-- App should look good in all window sizes
-- Add unit or integration tests
-- Add some micro interactions and animations
-- Be careful about accessibility
-- Be careful about your markup semantics
+---
 
-## Stack and tech considerations
+---
 
-![image](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![image](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![image](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)
-![iamge](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
-
-- This project is written in **Next.js**
-- The project **includes Typescript**, because it's a usual part of our stack. If you haven't work with Typescript before, don’t let that discourage you! We understand that, as developers, part of our job is facing new things constantly and **we will have in consideration you may never worked with it**.
-- Likewise, **we usually work with GraphQL**. If you know your way around it, that's great! If not, you can still give it a try. We expect you're be able to set up a client to consume the GraphQL endpoint we've set for you. You can check `apollo` or `react-query` for that task, for example.
-- As **for styling**, feel free to **go with your favorite flavor**. Though we use `styled-components` is not mandatory you do so too. Please **do not relay on css-frameworks or components libraries** for this.
-- User should be able to use the app, so you'll need to **deploy your project**! You can choose any pretty straightforward method for this, like `Vercel`, `Github pages` or similar.
-- **You can add unit or integration tests** to the mix
-- You can **go with the structure we have set up**. But **feel free to modify the file directory**, add, delete or merge folders if you want and, in short, structure code to your liking.
-- Some **basic tooling has been set up** for you, but **feel free to adapt it** to your preference (for example by adding/removing ESLint rules) or adding new tools you think may be relevant to create the best DX experience.
-
-👉 Lastly, remember **this challenge is the same for all technical levels**, so it's possible you're not familiar with all tools and concepts mentioned, and not all requisites and technical criteria applies to you. **Don't feel overwhelmed and make your best shot!**
-
-## Evaluation criteria
-
-- Your **code does work** accordingly to the product specifications
-- Your **code does not throw any errors** or warnings in the console
-- You **understand the requirements** the features needs to meet and are able of implement them
-- Your **care about your markup structure** and you **write good css**. Css is important, people!
-- You **care for the design** our team provide **and make it look at its best**
-- In general, you **care for detail**. Coding is caring. We expect you care for **accessibility**, semantics and don't leave anything to chance.
-- Your code is **well-written and structured**. Also you understand the balance between **clever, reusable code** and easy to read, change and maintain code.
-- You're able to **make decisions** about your implementation, **understand the tradeoffs** involved and be able to **reason about them**. Code is a team game!
-- In the same line, your care about **documenting your decisions** and your approach to the problem if necessary.
-- You're able to **investigate about the right tools** for the job and learn to use them by **reading documentation**. We'll value you **use as less external libraries as possible**.
-- You are committed to **create a appealing and smooth experience** for the user, and you know a lot of things adds up for this to be accomplished: performance, cover for all application states (empty, error, loading states), micro-interactions...
-- You feel comfortable working with git, **commit frequently and clearly**. And your commits make sense as a unit. You make check **Conventional commits** for your commit messages. Your knowledge of the git and Github workflow is a plus!
-
-## About Z1
-
-Here at z1 we make our best to offer the ideal environment for you to developing both professionally and personally. That's why we offer:
-
-⏰ **Flexible working hours**
-
-Life is not rigid; why should your work schedule be? We firmly believe that develop a brilliant career is compatible with having time to enhance other aspects of our lives.
-
-🎓 **Learning and training plan**
-
-Technology continually evolves, and so do we. We are not afraid of change, and we know the only way to stay up to date is to invest time on research, and study new trends.
-
-🤙 **Good vibes only**
-
-Empathy is one of our core values. This means listening to each other, having fun together, and trying to make everybody's life enjoyable while working on exciting projects.
-
-## Contact
-
-Follow us! we are on [Linkedin](https://www.linkedin.com/company/z1digitalstudio), [Twitter](https://twitter.com/z1digitalstudio) and [Instagram](https://www.instagram.com/z1digitalstudio/).
-
-Also, we show our work on [Dribble]() (we are part of the same [Tiny](https://www.tinycapital.com/) family 😉) and we share our knowledge on [Medium](https://medium.com/z1digitalstudio)
+Ojalá la lista de aprendizajes pueda seguir creciendo de la mano de Z1. Pero independientemente de lo que pase, el valor que me habéis aportado invitándome a hacer esta prueba es incalculable. Me siento mucho mejor desarrolladora que hace 2 semanas. Mil gracias, equipo 💙
